@@ -1,0 +1,19 @@
+<%- include("../partials/header", {title: "New Post"}) %> 
+<%- include("../partials/navbar") %> 
+<main>
+    <h1 class="text-center">New Post</h1>
+    <section class="container-fluid">
+        <form method="POST" action="/posts">
+            <div class="form-group">
+                <label for="title">Post Title</label>
+                <input type="text" class="form-control form-control-lg" id="title" name="title" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="content">Post Text</label>
+                <textarea class="form-control form-control-lg" id="content" name="content" placeholder="What's on your mind?" rows="10"></textarea>
+            </div>
+            <button type="submit" class="btn btn-lg btn-danger">Send</button>
+        </form>
+    </section>
+</main>
+<%- include("../partials/footer") %> 

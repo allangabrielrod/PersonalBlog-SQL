@@ -20,3 +20,21 @@ body {
   font-weight: bold;
   letter-spacing: 1.5px;
 }
+
+main {
+  padding: 0 7%;
+  margin: 20px auto;
+}
+
+.card {
+  color: #1f2c3d;
+  border-color: #2d4059;
+}
+
+.post-list .card {
+  margin-bottom: 20px;
+}
+
+.btn-outline-danger:hover, .btn-danger {
+  background-color: #ea5455;
+}
