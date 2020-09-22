@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Sriracha&display=swap");
+
+body {
+  background-color: #e5e5e5;
+}
+
+.navbar {
+  padding: 15px 7%;
+  background-color: #2d4059;
+  border-bottom: 3px solid #ea5455;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-family: 'Sriracha', cursive;
+}
+
+.nav-item {
+  margin: 0 5px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
