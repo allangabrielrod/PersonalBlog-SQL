@@ -1,10 +1,19 @@
 require("dotenv").config();
 
 const express       = require("express"),
-      bodyParser    = require("body-parser");
+      bodyParser    = require("body-parser"),
+      mongoose      = require("mongoose");
 
 const app = express();
 
+//db connection
+mongoose.connect(process.env.DBURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(console.log("DB Connected."))
+.catch(err => console.log(err));
+    
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
     extended: false
