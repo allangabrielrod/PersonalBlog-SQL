@@ -4,19 +4,20 @@
     <section class="container-fluid">
         <div class="row justify-content-between">
             <div class="col-md-8 post-list">
-
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-outline-danger">Read More</a>
+                <% posts.forEach(post => { %>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= post.title %></h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                <%= new Intl.DateTimeFormat("en-US", {
+                                    dateStyle: "long", timeStyle: "short"
+                                }).format(post.created) %>
+                            </h6>
+                            <p class="card-text"><%= post.content.length > 200 ? post.content.substr(0, 200) + "..." : post.content %></p>
+                            <a href="/posts/<%=post._id%>" class="btn btn-outline-danger">Read More</a>
+                        </div>
                     </div>
-                </div>
-                
-            </div>
-
-            <div class="col-md-3 latest">
-                sdjhasdh
+            <%  }); %> 
             </div>
         </div>
     </section>

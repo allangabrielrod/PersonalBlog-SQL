@@ -5,8 +5,4 @@ router.get("/", (req, res) => {
     res.redirect("/posts");
 });
 
-router.get("/posts", (req, res) => {
-    res.render("home");
-});
-
 module.exports = router;

@@ -7,6 +7,13 @@ router.get("/new", (req, res) => {
     res.render("posts/new");
 });
 
+router.get("/", (req, res) => {
+    Post.find((err, foundPosts) => {
+        if(!err)
+            res.render("home", {posts: foundPosts});
+    });
+});
+
 router.post("/", (req, res) => {
     const {title, content} = req.body;
     const newPost = { title, content };
