@@ -19,4 +19,14 @@ router.post("/", (req, res) => {
     });
 });
 
+router.get("/:id", (req, res) => {
+    Post.findById(req.params.id, (err, foundPost) => {
+        if(!err) {
+            res.render("posts/show", foundPost);
+        } else {
+            res.redirect("/posts");
+        }
+    })
+});
+
 module.exports = router;

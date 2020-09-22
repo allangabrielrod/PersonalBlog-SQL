@@ -38,3 +38,10 @@ main {
 .btn-outline-danger:hover, .btn-danger {
   background-color: #ea5455;
 }
+
+.post-show {
+  padding: 5%;
+  text-align: justify;
+  color: #1f2c3d;
+  background-color: #fff;
+}
