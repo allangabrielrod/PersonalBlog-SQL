@@ -58,4 +58,13 @@ router.put("/:id", (req, res) => {
     });
 });
 
+router.delete("/:id", (req, res) => {
+    Post.findByIdAndDelete(req.params.id, (err) => {
+        if(!err)
+            res.redirect("/posts");
+        else
+            res.redirect("back");
+    });
+});
+
 module.exports = router;

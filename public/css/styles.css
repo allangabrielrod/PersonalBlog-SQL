@@ -45,3 +45,13 @@ main {
   color: #1f2c3d;
   background-color: #fff;
 }
+
+.post-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.post-buttons .btn {
+  margin-right: 10px;
+}
