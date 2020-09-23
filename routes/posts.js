@@ -46,4 +46,16 @@ router.get("/:id/edit", (req, res) => {
     })
 });
 
+router.put("/:id", (req, res) => {
+    const { title, content } = req.body;
+    const editedPost = { title, content };
+    Post.findByIdAndUpdate(req.params.id, editedPost, (err) => {
+        if (!err) {
+            res.redirect("/posts/" + req.params.id);
+        } else {
+            res.redirect("back");
+        }
+    });
+});
+
 module.exports = router;
