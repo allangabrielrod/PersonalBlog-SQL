@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express       = require("express"),
       bodyParser    = require("body-parser"),
+      methodOveride = require("method-override"),
       mongoose      = require("mongoose");
 
 const app = express();
@@ -18,6 +19,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+app.use(methodOveride("_method"));
 
 app.use(express.static(__dirname + "/public"));
 

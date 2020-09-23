@@ -36,4 +36,35 @@ router.get("/:id", (req, res) => {
     })
 });
 
+router.get("/:id/edit", (req, res) => {
+    Post.findById(req.params.id, (err, foundPost) => {
+        if (!err) {
+            res.render("posts/edit", foundPost);
+        } else {
+            res.redirect("back");
+        }
+    })
+});
+
+router.put("/:id", (req, res) => {
+    const { title, content } = req.body;
+    const editedPost = { title, content };
+    Post.findByIdAndUpdate(req.params.id, editedPost, (err) => {
+        if (!err) {
+            res.redirect("/posts/" + req.params.id);
+        } else {
+            res.redirect("back");
+        }
+    });
+});
+
+router.delete("/:id", (req, res) => {
+    Post.findByIdAndDelete(req.params.id, (err) => {
+        if(!err)
+            res.redirect("/posts");
+        else
+            res.redirect("back");
+    });
+});
+
 module.exports = router;
