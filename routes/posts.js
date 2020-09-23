@@ -36,4 +36,14 @@ router.get("/:id", (req, res) => {
     })
 });
 
+router.get("/:id/edit", (req, res) => {
+    Post.findById(req.params.id, (err, foundPost) => {
+        if (!err) {
+            res.render("posts/edit", foundPost);
+        } else {
+            res.redirect("back");
+        }
+    })
+});
+
 module.exports = router;
