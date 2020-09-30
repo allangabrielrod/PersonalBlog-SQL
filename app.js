@@ -25,6 +25,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(methodOveride("_method"));
 
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
+});
+
 app.use(session({
     cookieName: "session",
     secret: process.env.CK_SECRET,
