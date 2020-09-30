@@ -1,19 +1,19 @@
-const express       = require("express"),
-      router        = express.Router(),
-      middleware    = require("../middleware"),
-      passport      = require("passport"),
-      User          = require("../models/User");
+const express   = require("express"),
+      router    = express.Router(),
+      middleware = require("../middleware"),
+      passport  = require("passport"),
+      User      = require("../models/User");
 
 
 router.get("/", (req, res) => {
     res.redirect("/posts");
 });
 
-router.get("/login", middleware.notAuthenticated, (req, res) => {
+router.get("/login", (req, res) => {
     res.render("login");
 });
 
-router.post("/login", middleware.notAuthenticated, passport.authenticate("local", {
+router.post("/login", passport.authenticate("local", {
     successRedirect: "/posts",
     failureRedirect: "/login"
 }));
@@ -42,7 +42,7 @@ router.post("/register", middleware.registerPermissions, (req, res) => {
     })
 });
 
-router.get("/logout", middleware.isAuthenticated, (req, res) => {
+router.get("/logout", (req, res) => {
     req.logOut();
     res.redirect("/");
 });
