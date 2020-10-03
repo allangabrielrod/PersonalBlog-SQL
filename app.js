@@ -25,11 +25,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(methodOveride("_method"));
 
-app.use((req, res, next) => {
-    res.locals.currentUser = req.user;
-    next();
-});
-
 app.use(session({
     cookieName: "session",
     secret: process.env.CK_SECRET,
@@ -46,6 +41,11 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
+});
 
 app.use(express.static(__dirname + "/public"));
 

@@ -16,7 +16,10 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
     const {title, content} = req.body;
+    const {id, username, fname, lname} = req.user;
     const newPost = { title, content };
+    newPost.author = {id, username, fname, lname}
+
     Post.create(newPost, (err, savedPost) => {
         if(!err) {
             res.redirect("/");
