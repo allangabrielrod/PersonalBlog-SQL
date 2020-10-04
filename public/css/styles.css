@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Sriracha&display=swap");
 
+html, body {
+  height: 100%;
+}
+
 body {
   background-color: #e5e5e5;
 }
@@ -22,6 +26,7 @@ body {
 }
 
 main {
+  height: 100%;
   padding: 0 7%;
   margin: 20px auto;
 }
@@ -62,4 +67,17 @@ main {
 
 .login-form {
   padding: 60px;
+}
+
+.footer {
+  padding: 50px;
+  color: white;
+  text-align: center;
+  border-top: 3px solid #ea5455;
+  background-color: #2d4059;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
 }
