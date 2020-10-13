@@ -14,6 +14,18 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/search", (req, res) => {
+    const { q } = req.query;
+    Post.find({ title: { $regex: q, $options: "i" } }, 
+        (err, foundPosts) => {
+            if(err)
+                res.redirect("back");
+            else
+                res.render("search", {posts: foundPosts});
+        }
+    );
+});
+
 router.post("/", (req, res) => {
     const {title, content} = req.body;
     const {id, username, fname, lname} = req.user;
