@@ -1,10 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Sriracha&display=swap");
 
-html, body {
-  height: 100%;
+html,
+body {
+  height: 100vh;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   background-color: #e5e5e5;
 }
 
@@ -16,7 +19,7 @@ body {
 
 .navbar-brand {
   font-size: 1.5rem;
-  font-family: 'Sriracha', cursive;
+  font-family: "Sriracha", cursive;
 }
 
 .nav-item {
@@ -26,9 +29,7 @@ body {
 }
 
 main {
-  height: 100%;
-  padding: 0 7%;
-  margin: 20px auto;
+  padding: 15px 7%;
 }
 
 .card {
@@ -40,7 +41,8 @@ main {
   margin-bottom: 20px;
 }
 
-.btn-outline-danger:hover, .btn-danger {
+.btn-outline-danger:hover,
+.btn-danger {
   background-color: #ea5455;
 }
 
@@ -70,6 +72,7 @@ main {
 }
 
 .footer {
+  margin-top: auto;
   padding: 50px;
   color: white;
   text-align: center;
