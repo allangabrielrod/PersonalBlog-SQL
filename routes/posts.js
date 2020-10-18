@@ -8,9 +8,8 @@ router.get("/new", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-    Post.find((err, foundPosts) => {
-        if(!err)
-            res.render("home", {posts: foundPosts});
+    Post.find().sort({ created: -1 }).exec((err, foundPosts) => {
+      if (!err) res.render("home", { posts: foundPosts });
     });
 });
 
