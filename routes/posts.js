@@ -1,5 +1,6 @@
 const express   = require("express"),
-      router    = express.Router();
+      router    = express.Router(),
+      sanitizer = require("sanitizer");
 
 const Post = require("../models/Post");
 
@@ -26,6 +27,7 @@ router.get("/search", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+    req.body.content = sanitizer.sanitize(req.body.content);
     const {title, content} = req.body;
     const {id, username, fname, lname} = req.user;
     const newPost = { title, content };

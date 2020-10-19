@@ -11,7 +11,7 @@
                         dateStyle: "long", timeStyle: "short"
                     }).format(created) %>  
                 </p>
-                <div><%= content %></div>
+                <div><%- content %></div>
                 
                 <% if(currentUser && author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) {%> 
                     <div class="post-buttons">

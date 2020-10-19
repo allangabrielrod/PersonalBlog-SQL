@@ -31,7 +31,7 @@
                                     dateStyle: "long", timeStyle: "short"
                                 }).format(post.created) %>
                             </h6>
-                            <p class="card-text"><%= post.content.length > 200 ? post.content.substr(0, 200) + "..." : post.content %></p>
+                            <div class="card-text"><%- post.content.length > 200 ? post.content.substr(0, 200) + "..." : post.content %></div>
                             <a href="/posts/<%=post.title%>" class="btn btn-outline-danger">Read More</a>
                         </div>
                     </div>
