@@ -52,12 +52,17 @@
 
 Before you run this project you must setup the following environment variables. We recommend you to choose between a <code>.env</code> file inside the project root directory or in your system as local variables.
 
-- ### <code> PORT </code> <p>Network port that the server should listen.</p>
+- ### <code> PORT </code>
 
+    Network port that the server should listen.
 
-- ### <code> CK_SECRET </code> <p>Session cookie secret.</p>
+- ### <code> CK_SECRET </code> 
 
-- ### <code> ADMIN_TOKEN </code> <p>Application admin token.</p>
+    Session cookie secret.
+
+- ### <code> ADMIN_TOKEN </code> 
+
+    Application admin token.
 
 <h3>Last Steps</h3>
 
