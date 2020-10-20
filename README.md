@@ -3,35 +3,23 @@
     <p>A simple nodejs personal blog.</p>
 </div>
 
-<br />
-
 # 📷 Screenshots
 
-
-## Home
-
+<h3> Home </h3>
 <img src="./github/screenshots/home.png" alt="[blog-home] " />
-<br />
-<br />
 
-## Login
+<h3> Login </h3>
 <img src="./github/screenshots/login.png" alt="[blog-login] " />
-<br />
-<br />
 
-## Register
+<h3> Register </h3>
 <img src="./github/screenshots/register.png" alt="[blog-login] " />
-<br />
-<br />
 
-## Post
+<h3> Post </h3>
 <img src="./github/screenshots/show.png" alt="[blog-show] " />
-<br />
-<br />
 
-## Compose
+<h3> Compose </h3>
 <img src="./github/screenshots/new.png" alt="[blog-compose] " />
-<br />
+
 <br />
 
 # 🛠️ Technologies
@@ -48,12 +36,9 @@
  - ### [EJS]("https://ejs.co/")
  - ### [Bootstrap 4]("https://getbootstrap.com/")
 
-<br />
-<br />
-
 # 🚀 How to deploy
 
-## First Steps
+<h3>First Steps</h3>
 
 1. Make sure you have [GIT]("https://git-scm.com/") installed in your system
 2. Make sure you have [Node.js]("https://nodejs.org/en/") installed in your system
@@ -63,9 +48,7 @@
     <code>$ git clone https://github.com/allangabrielrod/Personal-Blog.git</code>
 5. Setup the environment variables. (Take a look below)
 
-<br/>
-
-## Environment Variables
+<h3>Environment Variables</h3>
 
 Before you run this project you must setup the following environment variables. We recommend you to choose between a <code>.env</code> file inside the project root directory or in your system as local variables.
 
@@ -76,21 +59,17 @@ Before you run this project you must setup the following environment variables. 
 
 - ### <code> ADMIN_TOKEN </code> <p>Application admin token.</p>
 
-<br/>
-
-## Last Steps
+<h3>Last Steps</h3>
 
 1. After you've got all set up, run the following to download the project dependencies:
 
-   <code>$ npm -i </code>
-
+    <code>$ npm -i </code>
+   
 2. After you're done, run the following to run the application:
 
-   <code>$ node app.js </code>
+    <code>$ node app.js </code>
 
 3. Done!
-
-<br/>
 
 # 💁 Extra Tips
 
