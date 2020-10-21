@@ -52,6 +52,10 @@
 
 Before you run this project you must setup the following environment variables. We recommend you to choose between a <code>.env</code> file inside the project root directory or in your system as local variables.
 
+- ### <code> DBURL </code>
+
+    MongoDB URL
+
 - ### <code> PORT </code>
 
     Network port that the server should listen.
