@@ -72,7 +72,7 @@ Before you run this project you must setup the following environment variables. 
 
 1. After you've got all set up, run the following to download the project dependencies:
 
-    <code>$ npm -i </code>
+    <code>$ npm i </code>
    
 2. After you're done, run the following to run the application:
 
