@@ -17,9 +17,19 @@ body {
   border-bottom: 3px solid #ea5455;
 }
 
-.navbar-brand {
+.navbar-brand, .brand{
   font-size: 1.5rem;
   font-family: "Sriracha", cursive;
+}
+
+.brand {
+  color: white;
+  background-color: #2d4059;
+  padding: 10px;
+}
+
+.brand h1 {
+  font-size: 1.2em;
 }
 
 .nav-item {
@@ -69,6 +79,19 @@ main {
 
 .login-form {
   padding: 60px;
+}
+
+.about {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.details {
+  padding: 3% 0;
 }
 
 .footer {
