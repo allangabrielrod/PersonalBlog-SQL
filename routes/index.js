@@ -1,54 +1,58 @@
-const express   = require("express"),
-      router    = express.Router(),
-      middleware = require("../middleware"),
-      passport  = require("passport"),
-      User      = require("../models/User");
-
+const express = require("express"),
+  router = express.Router(),
+  middleware = require("../middleware"),
+  passport = require("passport"),
+  bcrypt = require("bcrypt"),
+  User = require("../models/User");
 
 router.get("/", (req, res) => {
-    res.redirect("/posts");
+  res.redirect("/posts");
 });
 
 router.get("/about", (req, res) => {
-    res.render("about");
+  res.render("about");
 });
 
 router.get("/login", (req, res) => {
-    res.render("login");
+  res.render("login");
 });
 
-router.post("/login", passport.authenticate("local", {
+router.post(
+  "/login",
+  passport.authenticate("local", {
     successRedirect: "/posts",
-    failureRedirect: "/login"
-}));
+    failureRedirect: "/login",
+  })
+);
 
 router.get("/register", middleware.registerPermissions, (req, res) => {
-    res.render("register");
+  res.render("register");
 });
 
-router.post("/register", middleware.registerPermissions, (req, res) => {
-    const { username, fname, lname, adminToken, password } = req.body;
-    const newUser = { 
-        username, 
-        fname, 
-        lname, 
-        isAdmin: (adminToken === process.env.ADMIN_TOKEN) 
-    }
+router.post("/register", middleware.registerPermissions, async (req, res) => {
+  const { username, fname, lname, adminToken, password } = req.body;
+  console.log(req.body);
+  const newUser = {
+    username,
+    fname,
+    lname,
+    isAdmin: adminToken === process.env.ADMIN_TOKEN,
+  };
 
-    User.register(newUser, password, (err) => {
-        if(!err)
-            res.redirect("/login");
-        else {
-            console.error(err);
-            res.redirect("back");
-        }
-        
-    })
+  newUser.password = await bcrypt.hash(password, 14);
+
+  try {
+    await User.create(newUser);
+    res.redirect("/login");
+  } catch (e) {
+    console.error(e);
+    res.redirect("back");
+  }
 });
 
 router.get("/logout", (req, res) => {
-    req.logOut();
-    res.redirect("/");
+  req.logOut();
+  res.redirect("/");
 });
 
 module.exports = router;

@@ -1,92 +1,94 @@
-const express   = require("express"),
-      router    = express.Router(),
-      sanitizer = require("sanitizer");
+const express = require("express"),
+  router = express.Router(),
+  sanitizer = require("sanitizer"),
+  { Op } = require("sequelize");
 
 const Post = require("../models/Post");
 
 router.get("/new", (req, res) => {
-    res.render("posts/new");
+  res.render("posts/new");
 });
 
-router.get("/", (req, res) => {
-    Post.find().sort({ created: -1 }).exec((err, foundPosts) => {
-      if (!err) res.render("home", { posts: foundPosts });
+router.get("/", async (req, res) => {
+  try {
+    const posts = await Post.findAll();
+    res.render("home", { posts });
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+router.get("/search", async (req, res) => {
+  const { q } = req.query;
+
+  try {
+    const foundPosts = await Post.findAll({
+      where: { title: { [Op.like]: `%${q}%` } },
     });
+    const posts = foundPosts.map((post) => post.dataValues);
+    res.render("search", { posts });
+  } catch (e) {
+    console.log(e);
+    res.redirect("back");
+  }
 });
 
-router.get("/search", (req, res) => {
-    const { q } = req.query;
-    Post.find({ title: { $regex: q, $options: "i" } }, 
-        (err, foundPosts) => {
-            if(err)
-                res.redirect("back");
-            else
-                res.render("search", {posts: foundPosts});
-        }
-    );
+router.post("/", async (req, res) => {
+  req.body.content = sanitizer.sanitize(req.body.content);
+  const { title, content } = req.body;
+  const { id } = req.user;
+  const newPost = { title, content, author_id: id };
+
+  try {
+    const post = await Post.create(newPost);
+    console.log(post);
+    res.redirect(`posts/${post.id}`);
+  } catch (e) {
+    console.error(e);
+  }
 });
 
-router.post("/", (req, res) => {
-    req.body.content = sanitizer.sanitize(req.body.content);
-    const {title, content} = req.body;
-    const {id, username, fname, lname} = req.user;
-    const newPost = { title, content };
-    newPost.author = {id, username, fname, lname}
-
-    Post.create(newPost, (err, savedPost) => {
-        if(!err) {
-            res.redirect("/");
-        } else {
-            res.redirect("back");
-        }
-    });
+router.get("/:id", async (req, res) => {
+  try {
+    const post = await Post.findByPk(req.params.id);
+    res.render("posts/show", { ...post.dataValues });
+  } catch (e) {
+    console.error(e);
+    res.redirect("/posts");
+  }
 });
 
-router.get("/:title", (req, res) => {
-    const reqTitle = req.params.title.toLowerCase();
-
-    Post.find((err, foundPosts) => {
-        if(err) res.redirect("/posts");
-
-        const post = foundPosts.find((post) => post.title.toLowerCase() === reqTitle);
-
-        if (post) {
-            res.render("posts/show", post);
-        } else {
-            res.redirect("/posts");
-        }
-    });
+router.get("/:id/edit", async (req, res) => {
+  try {
+    const post = await Post.findByPk(req.params.id);
+    res.render("posts/edit", { ...post.dataValues });
+  } catch (e) {
+    console.error(e);
+    res.redirect("back");
+  }
 });
 
-router.get("/:id/edit", (req, res) => {
-    Post.findById(req.params.id, (err, foundPost) => {
-        if (!err) {
-            res.render("posts/edit", foundPost);
-        } else {
-            res.redirect("back");
-        }
-    })
+router.put("/:id", async (req, res) => {
+  const { title, content } = req.body;
+  const editedPost = { title, content };
+
+  try {
+    await Post.update(editedPost, { where: { id: req.params.id } });
+    res.redirect("/posts/" + req.params.id);
+  } catch (e) {
+    console.error(e);
+    res.redirect("back");
+  }
 });
 
-router.put("/:id", (req, res) => {
-    const { title, content } = req.body;
-    const editedPost = { title, content };
-    Post.findByIdAndUpdate(req.params.id, editedPost, (err) => {
-        if (!err) {
-            res.redirect("/posts/" + req.params.id);
-        } else {
-            res.redirect("back");
-        }
-    });
-});
-
-router.delete("/:id", (req, res) => {
-    Post.findByIdAndDelete(req.params.id, (err) => {
-        if(!err)
-            res.redirect("/posts");
-        else
-            res.redirect("back");
-    });
+router.delete("/:id", async (req, res) => {
+  try {
+    await Post.destroy({ where: { id: req.params.id } });
+    res.redirect("/posts");
+  } catch (e) {
+    console.error(e);
+    res.redirect("back");
+  }
 });
 
 module.exports = router;
