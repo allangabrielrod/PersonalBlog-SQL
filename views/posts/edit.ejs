@@ -3,7 +3,7 @@
 <main>
     <h1 class="text-center">Edit Post</h1>
     <section class="container-fluid">
-        <form method="POST" action="/posts/<%= _id %>?_method=PUT">
+        <form method="POST" action="/posts/<%= id %>?_method=PUT">
             <div class="form-group">
                 <label for="title">Post Title</label>
                 <input type="text" class="form-control form-control-lg" id="title" name="title" placeholder="Title" value="<%= title %>">

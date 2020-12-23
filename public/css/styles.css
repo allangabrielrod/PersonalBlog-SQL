@@ -17,7 +17,8 @@ body {
   border-bottom: 3px solid #ea5455;
 }
 
-.navbar-brand, .brand{
+.navbar-brand,
+.brand {
   font-size: 1.5rem;
   font-family: "Sriracha", cursive;
 }

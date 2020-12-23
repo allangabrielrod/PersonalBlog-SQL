@@ -1,69 +1,103 @@
-<%- include("./partials/header", {title: "Search"}) %>
-<%- include("./partials/navbar") %>
+<%- include("./partials/header", {title: "Search"}) %> <%-
+include("./partials/navbar") %>
 <main>
-    <section class="container-fluid">
-        <% if(posts.length > 0) { %> 
-        <div class="row justify-content-between">
-            <div class="col-md-4 order-md-1">
-                <div class="row justify-content-center mb-3">
-                    <form class="form-inline" method="GET" action="/posts/search">
-                        <div class="input-group">
-                            <input type="search" class="form-control" id="q" name="q" placeholder="Search">
-                            <button type="submit" class="btn btn-md btn-danger">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search"
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
-                                    <path fill-rule="evenodd"
-                                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+  <section class="container-fluid">
+    <% if(posts.length > 0) { %>
+    <div class="row justify-content-between">
+      <div class="col-md-4 order-md-1">
+        <div class="row justify-content-center mb-3">
+          <form class="form-inline" method="GET" action="/posts/search">
+            <div class="input-group">
+              <input
+                type="search"
+                class="form-control"
+                id="q"
+                name="q"
+                placeholder="Search"
+              />
+              <button type="submit" class="btn btn-md btn-danger">
+                <svg
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  class="bi bi-search"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+                  />
+                </svg>
+              </button>
             </div>
-            <div class="col-md-8 post-list order-md-0">
-                <h2>Results: </h2>
-                <% posts.forEach(post => { %>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= post.title %></h5>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            <%= new Intl.DateTimeFormat("en-US", {
-                                    dateStyle: "long", timeStyle: "short"
-                                }).format(post.created) %>
-                        </h6>
-                        <p class="card-text">
-                            <%= post.content.length > 200 ? post.content.substr(0, 200) + "..." : post.content %></p>
-                        <a href="/posts/<%=post.title%>" class="btn btn-outline-danger">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <%  }); %>
-        <% } else { %>
-            <div class="row justify-content-center">
-                <div class=" col-12 text-center my-3">
-                    <h1 class="display-4">Nothing Found ;-;</h1>
-                    <p class="lead">Try Again :)</p>
-                </div>
-                <form class="form-inline" method="GET" action="/posts/search">
-                    <div class="input-group">
-                        <input type="search" class="form-control" id="q" name="q" placeholder="Search">
-                        <button type="submit" class="btn btn-md btn-danger">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
-                                <path fill-rule="evenodd"
-                                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
-                            </svg>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        <% } %>  
+          </form>
         </div>
-    </section>
+      </div>
+      <div class="col-md-8 post-list order-md-0">
+        <h2>Results:</h2>
+        <% posts.forEach(post => { %>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= post.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              <%= new Intl.DateTimeFormat("en-US", { dateStyle: "long",
+              timeStyle: "short" }).format(post.created) %>
+            </h6>
+            <p class="card-text">
+              <%= post.content.length > 200 ? post.content.substr(0, 200) +
+              "..." : post.content %>
+            </p>
+            <a href="/posts/<%=post.title%>" class="btn btn-outline-danger"
+              >Read More</a
+            >
+          </div>
+        </div>
+      </div>
+      <% }); %> <% } else { %>
+      <div class="row justify-content-center">
+        <div class="col-12 text-center my-3">
+          <h1 class="display-4">Nothing Found ;-;</h1>
+          <p class="lead">Try Again :)</p>
+        </div>
+        <form class="form-inline" method="GET" action="/posts/search">
+          <div class="input-group">
+            <input
+              type="search"
+              class="form-control"
+              id="q"
+              name="q"
+              placeholder="Search"
+            />
+            <button type="submit" class="btn btn-md btn-danger">
+              <svg
+                width="1em"
+                height="1em"
+                viewBox="0 0 16 16"
+                class="bi bi-search"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+                />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+      <% } %>
+    </div>
+  </section>
 </main>
 
 <%- include("./partials/footer") %>
