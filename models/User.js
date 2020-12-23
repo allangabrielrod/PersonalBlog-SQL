@@ -1,17 +1,37 @@
-const mongoose = require("mongoose");
-const passportLocalMongoose = require("passport-local-mongoose");
+const { DataTypes } = require("sequelize");
+const database = require("../database");
 
-const UserSchema = new mongoose.Schema({
-    username: String,
-    fname: String,
-    lname: String,
-    isAdmin: {
-        type: Boolean,
-        default: false
-    },
-    password: String
+const User = database.define("User", {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
+    unique: true,
+  },
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  fname: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  lname: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  isAdmin: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
-UserSchema.plugin(passportLocalMongoose);
-
-module.exports = mongoose.model("user", UserSchema);
+module.exports = User;

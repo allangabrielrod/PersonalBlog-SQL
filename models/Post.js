@@ -1,24 +1,24 @@
-const mongoose = require("mongoose");
+const { DataTypes } = require("sequelize");
+const database = require("../database");
 
-const PostSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        unique: true
+const Post = database.define("Post", {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  content: { type: DataTypes.STRING },
+  author_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: "Users",
+      key: "id",
     },
-    content: String,
-    created: {
-        type: Date,
-        default: Date.now
-    },
-    author: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        },
-        username: String,
-        fname: String,
-        lname: String
-    }
+  },
 });
 
-module.exports = mongoose.model("post", PostSchema);
+module.exports = Post;
