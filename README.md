@@ -96,7 +96,7 @@ Before you run this project you must setup the following environment variables. 
 <h3>.env Example</h3>
 
 <code>
-
+    
     PORT=3000
     ADMIN_TOKEN=opaksdoaidwpasdfjaisjfpisfi
     CK_SECRET=asjdiajsodihfoiajdfiuashdbfiouadhfao
@@ -135,6 +135,6 @@ Before you run this project you must setup the following environment variables. 
 
 # 💁 Extra Tips
 
-If you're a developer and want to make changes to this project, we recommend you to install [nodemon]("https://nodemon.io/") as a node global package. So you can focus on development instead of waste time restarting the application on every change. To install it just run:
+If you're a developer and want to make changes to this project, we recommend you to install [nodemon](https://nodemon.io/) as a node global package. So you can focus on development instead of waste time restarting the application on every change. To install it just run:
 
 <code>$ npm i -g nodemon</code>
