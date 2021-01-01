@@ -44,9 +44,9 @@ include("./partials/navbar") %>
             <h5 class="card-title"><%= post.title %></h5>
             <h6 class="card-subtitle mb-2 text-muted">
               <%= new Intl.DateTimeFormat("en-US", { dateStyle: "long",
-              timeStyle: "short" }).format(post.created) %>
+              timeStyle: "short" }).format(post.createdAt) %>
             </h6>
-            <div class="card-text">
+            <div class="card-text mb-2">
               <%- post.content.length > 200 ? post.content.substr(0, 200) +
               "..." : post.content %>
             </div>
