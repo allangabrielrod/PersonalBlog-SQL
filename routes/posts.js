@@ -1,13 +1,10 @@
 const express = require("express"),
   router = express.Router(),
   sanitizer = require("sanitizer"),
-  { Op } = require("sequelize");
+  { Op } = require("sequelize"),
+  { isOwnerOrAdmin, isAuthenticated } = require("../middleware/index");
 
 const Post = require("../models/Post");
-
-router.get("/new", (req, res) => {
-  res.render("posts/new");
-});
 
 router.get("/", async (req, res) => {
   try {
@@ -33,7 +30,11 @@ router.get("/search", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.get("/new", isAuthenticated, (req, res) => {
+  res.render("posts/new");
+});
+
+router.post("/", isAuthenticated, async (req, res) => {
   req.body.content = sanitizer.sanitize(req.body.content);
   const { title, content } = req.body;
   const { id } = req.user;
@@ -58,7 +59,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get("/:id/edit", async (req, res) => {
+router.get("/:id/edit", isOwnerOrAdmin, async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id);
     res.render("posts/edit", { ...post.dataValues });
@@ -68,7 +69,7 @@ router.get("/:id/edit", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", isOwnerOrAdmin, async (req, res) => {
   const { title, content } = req.body;
   const editedPost = { title, content };
 
@@ -81,7 +82,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", isOwnerOrAdmin, async (req, res) => {
   try {
     await Post.destroy({ where: { id: req.params.id } });
     res.redirect("/posts");

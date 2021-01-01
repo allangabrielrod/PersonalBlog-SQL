@@ -1,6 +1,6 @@
 const express = require("express"),
   router = express.Router(),
-  middleware = require("../middleware"),
+  { registerPermissions } = require("../middleware"),
   passport = require("passport"),
   bcrypt = require("bcrypt"),
   User = require("../models/User");
@@ -25,11 +25,11 @@ router.post(
   })
 );
 
-router.get("/register", middleware.registerPermissions, (req, res) => {
+router.get("/register", registerPermissions, (req, res) => {
   res.render("register");
 });
 
-router.post("/register", middleware.registerPermissions, async (req, res) => {
+router.post("/register", registerPermissions, async (req, res) => {
   const { username, fname, lname, adminToken, password } = req.body;
   console.log(req.body);
   const newUser = {
