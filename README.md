@@ -30,15 +30,33 @@ Personal blog is a open-source blog platform where you can use, customize, add n
 # 🛠️ Technologies
 
 - ### [Node.js](https://nodejs.org/en/)
+  A  JavaScript runtime built on v8 engine.
+
 - ### [Express](http://expressjs.com/pt-br/)
+  A Node.js web application framework that provides a robust set of features for web and mobile applications.
+
 - ### [MySQL](https://www.mysql.com/)
+  The most popular relational database.
+
 - ### [Sequelize](https://sequelize.org)
+  A promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite and Microsoft SQL Server. It features solid transaction support, relations, eager and lazy loading, read replication and more.
+
 - ### [Passport.js](http://www.passportjs.org/)
+  A authentication middleware for Node.js.
   - [Passport-local](http://www.passportjs.org/packages/passport-local/)
+    Passport strategy for authenticating with a username and password.
+
 - ### [Client-Sessions](https://www.npmjs.com/package/client-sessions)
+  Aconnect middleware that implements sessions in encrypted tamper-free cookies.
+
 - ### [Sanitizer](https://www.npmjs.com/package/client-sessions)
+  This library is for the purpose of sanitizing user input.
+
 - ### [EJS](https://ejs.co/)
+  A templating language that lets you generate HTML markup with plain JavaScript.
+  
 - ### [Bootstrap 4](https://getbootstrap.com/)
+  The world’s most popular framework for building responsive, mobile-first sites, with BootstrapCDN and a template starter page.
 
 # 🚀 How to deploy
 
