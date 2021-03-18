@@ -136,7 +136,7 @@ Before you run this project you must setup the following environment variables. 
 
    <code>$ node app.js </code>
 
-3. Done!
+3. Acess http://localhost:3000 to see your blog running!
 
 <h3># Using</h3>
 
